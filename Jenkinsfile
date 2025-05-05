@@ -1,21 +1,11 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    docker.build('my-image')
-                }
-            }
+agent any 
+
+   stages{
+     stage("cloning"){
+       steps{
+          git branch:"master", url: "https://github.com/yogananadabrahmachari/Chat-Bot.git"
         }
-        stage('Test') {
-            steps {
-                script {
-                    docker.image('my-image').inside {
-                        sh 'npm test'
-                    }
-                }
-            }
-        }
-    }
+     }
+  }
 }
